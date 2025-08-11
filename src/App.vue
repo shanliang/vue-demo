@@ -20,9 +20,11 @@ async function incrementWithNextTick() {
   // DOM 此时已经更新
   console.log('nextTick 后 - count:', count.value)
   console.log('nextTick 后 - DOM 内容:', document.getElementById('counter').textContent)
-  
   message.value = '更新完成！'
-  
+
+  console.log('nextTick 前 - message:', message.value, document.getElementById('message').textContent)
+  await nextTick()
+  console.log('nextTick 后 - message 内容:', document.getElementById('message').textContent)
   // 在点击处理函数中更新日志，而不是在 onUpdated 中
   updateLog.value.push(`点击更新 #${updateCount.value + 1}: count = ${count.value}`)
   updateCount.value++
@@ -47,7 +49,6 @@ onUpdated(() => {
 // 组件挂载时的日志
 onMounted(() => {
   console.log('组件已挂载')
-  updateLog.value.push('组件初始化')
 })
 </script>
 
@@ -60,7 +61,7 @@ onMounted(() => {
       <button id="counter" @click="incrementWithNextTick" class="btn">
         Count: {{ count }}
       </button>
-      <p class="message">{{ message }}</p>
+      <p id="message" class="message">{{ message }}</p>
     </div>
     
     <div class="demo-section">
