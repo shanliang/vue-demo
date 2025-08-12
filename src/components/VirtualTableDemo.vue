@@ -1,13 +1,13 @@
 <template>
   <div class="virtual-table-demo">
-    <h2>虚拟列表行更新示例 (300条数据)</h2>
+    <h2>虚拟列表行更新示例 (200条数据)</h2>
     
     <div class="controls">
       <vxe-button @click="addRandomData">添加随机数据</vxe-button>
       <vxe-button @click="updateRandomRows">批量更新随机行</vxe-button>
       <vxe-button @click="updateFirst10Rows">批量更新前10行</vxe-button>
       <vxe-button @click="clearData">清空数据</vxe-button>
-      <vxe-button @click="generateDataAction">生成300条数据</vxe-button>
+      <vxe-button @click="generateDataAction">生成200条数据</vxe-button>
     </div>
     
     <div class="stats">
@@ -113,7 +113,7 @@ const formItems = ref([
 ])
 
 // 生成模拟数据
-const generateData = (count = 300) => {
+const generateData = (count = 200) => {
   const data = []
   const cities = ['北京', '上海', '广州', '深圳', '杭州', '成都', '武汉', '西安']
   const statuses = ['活跃', '离线', '忙碌', '离开']
@@ -192,7 +192,7 @@ const clearData = () => {
 const generateDataAction = () => {
   loading.value = true
   setTimeout(() => {
-    tableData.value = generateData(300)
+    tableData.value = generateData(200)
     loading.value = false
     updateTime()
   }, 500)
@@ -245,7 +245,7 @@ const updateTime = () => {
 // 组件挂载时初始化数据
 onMounted(() => {
   console.log('VirtualTableDemo 组件已挂载')
-  tableData.value = generateData(300)
+  tableData.value = generateData(200)
   updateTime()
   console.log('初始数据条数:', tableData.value.length)
 })

@@ -1,23 +1,6 @@
-import { fileURLToPath, URL } from 'node:url'
-
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
-  },
-  server: {
-    port: 3005 
-  },
+// 部署配置文件
+export default {
+  // 构建配置
   build: {
     // 输出目录
     outDir: 'dist',
@@ -39,8 +22,26 @@ export default defineConfig({
           utils: ['dayjs']
         }
       }
-    },
-    // 块大小警告限制
-    chunkSizeWarningLimit: 1000
+    }
+  },
+  
+  // 服务器配置
+  server: {
+    // 预览端口
+    port: 4173,
+    // 是否自动打开浏览器
+    open: true
+  },
+  
+  // 部署信息
+  deploy: {
+    // 项目名称
+    name: 'vue-project',
+    // 版本号
+    version: '0.0.0',
+    // 构建时间
+    buildTime: new Date().toISOString(),
+    // 部署说明
+    description: 'Vue 3 + Vite + VXE-Table 项目'
   }
-})
+} 
